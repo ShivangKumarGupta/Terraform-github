@@ -14,11 +14,13 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '2.7'
+      - name: Install Bundler
+        run: |
+          gem install bundler
 
       - name: Install dependencies
         run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3
+          bundle install 
 
       - name: Run task
         run: ruby bundle exec rspec
