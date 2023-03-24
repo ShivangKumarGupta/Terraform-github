@@ -23,7 +23,7 @@ jobs:
           bundle install 
 
       - name: Run task
-        run: ruby bundle exec rspec
+        run: ruby my_task.rb --arg1 value1 --arg2 value2
 
 
 
