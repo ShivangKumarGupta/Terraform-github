@@ -18,9 +18,7 @@ jobs:
       - name: Install dependencies
         run: |
           gem install bundler
-          source "$(ruby -r rubygems -e 'puts Gem.user_dir')/bin/bundle" || \
-          source "$(ruby -r rubygems -e 'puts Gem.bindir')/bundle"
-          bundle install
+          bundle install --jobs 4 --retry 3
 
       - name: Run task
         run: ruby bundle exec rspec
