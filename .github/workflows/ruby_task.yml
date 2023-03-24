@@ -1,24 +1,30 @@
-name: Ruby Workflow
-on:
+name: Ruby Task
+
+on: 
   push:
-    branches:
-      - master
+      branches:
+         - master
+
 
 jobs:
-  build:
+  run-task:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.0
+          ruby-version: '2.7'
+
       - name: Install dependencies
         run: |
           gem install bundler
-          bundle install --jobs 4 --retry 3
-      - name: Run tests
-        run: |
-          bundle exec rspec
+          bundle install
+
+      - name: Run task
+        run: ruby my_task.rb --arg1 value1 --arg2 value2
 
 
